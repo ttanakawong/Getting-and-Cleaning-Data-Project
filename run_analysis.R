@@ -39,7 +39,7 @@ write.table(tidydata1,"tidydata1.txt")
 
 ## 5) From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-UniqueSubjects = unique(subject)[,1]
+USubjects = unique(subject)[,1]
 NSubjects = length(unique(subject)[,1])
 NActivities = length(activity[,1])
 NCols = dim(tidydata1)[2]
@@ -48,7 +48,7 @@ Result = tidydata1[1:(NSubjects*NActivities), ]
 row = 1
 for (subject in 1:NSubjects) {
   for (a in 1:NActivities) {
-    Result[row, 1] = UniqueSubjects[subject]
+    Result[row, 1] = USubjects[subject]
     Result[row, 2] = activity[a, 2]
     dta <- tidydata1[tidydata1$subject==subject & tidydata1$activity==activity[a, 2], ]
     Result[row, 3:NCols] <- colMeans(dta[, 3:NCols])
